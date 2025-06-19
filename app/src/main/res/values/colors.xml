@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Standard colors -->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -7,4 +8,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    
+    <!-- Batik-inspired colors -->
+    <color name="batik_brown">#8D4925</color>
+    <color name="batik_dark_brown">#5D3A1A</color>
+    <color name="batik_cream">#F5DEB3</color>
+    <color name="batik_gold">#D4AF37</color>
+    <color name="batik_background">#FDFAF5</color>
 </resources>

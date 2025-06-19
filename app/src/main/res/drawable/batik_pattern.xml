@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    
+    <!-- Circular batik pattern -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M24,4c11.05,0 20,8.95 20,20s-8.95,20 -20,20 -20,-8.95 -20,-20 8.95,-20 20,-20zM24,8c-8.84,0 -16,7.16 -16,16s7.16,16 16,16 16,-7.16 16,-16 -7.16,-16 -16,-16z"/>
+        
+    <!-- Smaller inner circle -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M24,16c4.42,0 8,3.58 8,8s-3.58,8 -8,8 -8,-3.58 -8,-8 3.58,-8 8,-8zM24,20c-2.21,0 -4,1.79 -4,4s1.79,4 4,4 4,-1.79 4,-4 -1.79,-4 -4,-4z"/>
+        
+    <!-- Decorative lines -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1"
+        android:pathData="M4,24L12,24M36,24L44,24M24,4L24,12M24,36L24,44"/>
+</vector>
