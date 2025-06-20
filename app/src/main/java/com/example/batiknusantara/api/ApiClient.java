@@ -4,13 +4,13 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
-    // Localhost
-    public static final String  BASE_URL = "http://192.168.1.13/api_native_sertifikasi2/api/";
-    public static final String  BASE_URL_IMAGE = "http://192.168.1.13/api_native_sertifikasi2/uploads/";
+    // Emulator
+//    public static final String  BASE_URL = "http://10.0.2.2:8080/api_native_sertifikasi2/api/";
+//    public static final String  BASE_URL_IMAGE = "http://10.0.2.2:8080/api_native_sertifikasi2/uploads/";
 
-    // Hosting
-//    public static final String  BASE_URL = "https://androidfisco.umrmaulana.my.id/api-mobile-2/";
-//    public static final String  BASE_URL_IMAGE = "https://androidfisco.umrmaulana.my.id/api-mobile-2/images/";
+    // Localhost
+    public static final String  BASE_URL = "http://192.168.1.14:8080/api_native_sertifikasi2/api/";
+    public static final String  BASE_URL_IMAGE = "http://192.168.1.14:8080/api_native_sertifikasi2/uploads/";
 
     private static Retrofit retrofit;
 

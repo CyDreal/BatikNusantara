@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Color Pimary -->
+    <color name="primary">#4B0A0A</color>
+    <color name="primary_variant">#4B0A0A</color>
+    <color name="secondary">#FABC32</color>
+    <color name="secondary_variant">#FABC32</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="cream">#F5DEB3</color>
+    <color name="background">#FDFAF5</color>
+    <color name="text_primary">#1D1D1D</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_tertiary">#61677A</color>
+    <color name="text_link">#040DFF</color>
+    <color name="card_bg">#F8F9FB</color>
+    <color name="input_bg">#F5F5F5</color>
+    <color name="stroke_color">#E0E0E0</color>
+
     <!-- Standard colors -->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
@@ -8,11 +24,4 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    
-    <!-- Batik-inspired colors -->
-    <color name="batik_brown">#8D4925</color>
-    <color name="batik_dark_brown">#5D3A1A</color>
-    <color name="batik_cream">#F5DEB3</color>
-    <color name="batik_gold">#D4AF37</color>
-    <color name="batik_background">#FDFAF5</color>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.batiknusantara.model;
+package com.example.batiknusantara.api.request;
 
 public class AuthRequest {
     private String email;

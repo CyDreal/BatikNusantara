@@ -1,13 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.order.OrderFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.order.OrderFragment"
+    android:layout_margin="16dp">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Order" />
+        android:id="@+id/tv_order"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ORDER"
+        android:textSize="20sp"
+        android:textColor="@color/text_primary"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        tools:ignore="MissingConstraints"/>
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/emptyCartText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your cart is empty"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:layout_marginTop="16dp"
+        android:overScrollMode="always"
+        android:padding="10dp"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@+id/layoutFooter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_order" />
+
+    <!-- Footer untuk total bayar dan tombol checkout -->
+    <LinearLayout
+        android:id="@+id/layoutFooter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- TextView Total -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="SUBTOTAL"
+            android:textColor="@color/text_primary"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_total_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:gravity="center_vertical"
+            android:text="Rp 0"
+            android:textColor="@color/text_primary"
+            android:textSize="16sp" />
+
+        <!-- Tombol Checkout -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_checkout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/primary"
+            android:text="Checkout"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:cornerRadius="12dp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

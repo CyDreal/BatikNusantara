@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="3dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="bottom">
+
+        <!-- Gambar Produk -->
+        <ImageView
+            android:id="@+id/imgOrder"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:background="#FFFFFF"
+            android:scaleType="centerCrop" />
+
+        <!-- Info Produk -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvOrderNama"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLength="100"
+                android:text="Nama Produk"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                orientation="horizontal"
+                android:layout_marginTop="8dp"
+                tools:ignore="MissingPrefix">
+
+                <TextView
+                    android:id="@+id/tvOrderHarga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Rp 99.999,00"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvQty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Qty: 1"
+                    android:textColor="@color/text_primary"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvOrderSubtotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Subtotal: Rp 0,00"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <!-- Tombol Hapus -->
+
+        <ImageButton
+            android:id="@+id/btnHapus"
+            android:layout_width="24dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_delete"
+            android:tint="@android:color/holo_red_dark"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,UseAppTint" />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

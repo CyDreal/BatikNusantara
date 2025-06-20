@@ -7,7 +7,6 @@ import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,8 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.batiknusantara.R;
 import com.example.batiknusantara.api.ApiClient;
 import com.example.batiknusantara.api.ApiService;
-import com.example.batiknusantara.model.RegisterRequest;
-import com.example.batiknusantara.model.RegisterResponse;
+import com.example.batiknusantara.api.request.RegisterRequest;
+import com.example.batiknusantara.api.response.RegisterResponse;
 import com.google.android.material.textfield.TextInputEditText;
 
 import retrofit2.Call;
@@ -36,7 +35,6 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView textViewLogin;
 
     private ApiService apiService;
-    private static final String TAG = "RegisterActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,7 +154,7 @@ public class RegisterActivity extends AppCompatActivity {
                     } else {
                         // Response error
                         Toast.makeText(RegisterActivity.this, "Gagal mendaftar. Periksa koneksi internet dan coba lagi.", Toast.LENGTH_LONG).show();
-                        Log.e(TAG, "Response error: " + response.message());
+                        Log.e("Register Activity", "Response error: " + response.message());
                     }
                 }
 
@@ -164,7 +162,7 @@ public class RegisterActivity extends AppCompatActivity {
                 public void onFailure(Call<RegisterResponse> call, Throwable t) {
                     showProgress(false);
                     Toast.makeText(RegisterActivity.this, "Gagal mendaftar: " + t.getMessage(), Toast.LENGTH_LONG).show();
-                    Log.e(TAG, "API call failed", t);
+                    Log.e("Register Activity", "API call failed", t);
                 }
             });
         }

@@ -1,40 +1,25 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.BatikNusantara" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Base.Theme.BatikNusantara" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color - warm earthy tones for batik theme -->
-        <item name="colorPrimary">#8D4925</item>
-        <item name="colorPrimaryVariant">#5D3A1A</item>
-        <item name="colorOnPrimary">#FFF8F0</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_variant</item>
+        <item name="colorOnPrimary">@color/white</item>
+
         <!-- Secondary brand color - complement the earthy tones -->
-        <item name="colorSecondary">#A05C17</item>
-        <item name="colorSecondaryVariant">#D4A76A</item>
-        <item name="colorOnSecondary">#2C2418</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondaryVariant">@color/secondary_variant</item>
+        <item name="colorOnSecondary">@color/primary</item>
+
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Action bar styling -->
-        <item name="actionBarStyle">@style/Widget.BatikNusantara.ActionBar</item>
-        <item name="actionBarTheme">@style/ThemeOverlay.BatikNusantara.ActionBar</item>
-        <!-- Background color -->
-        <item name="android:windowBackground">@color/batik_background</item>
+        <item name="android:statusBarColor">@color/primary</item>
+
         <!-- Navigation bar color -->
-        <item name="android:navigationBarColor">?attr/colorPrimaryVariant</item>
-    </style>
+        <item name="android:navigationBarColor">@color/primary</item>
 
-    <!-- Custom ActionBar style -->
-    <style name="Widget.BatikNusantara.ActionBar" parent="Widget.MaterialComponents.ActionBar.Primary">
-        <item name="background">?attr/colorPrimary</item>
-        <item name="titleTextStyle">@style/TextAppearance.BatikNusantara.ActionBar.Title</item>
+        <item name="actionMenuTextColor">@color/primary</item>
+        <item name="colorControlHighlight">@color/primary</item>
     </style>
-
-    <!-- ActionBar theme overlay -->
-    <style name="ThemeOverlay.BatikNusantara.ActionBar" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar">
-        <item name="colorControlNormal">?attr/colorOnPrimary</item>
-    </style>
-
-    <!-- ActionBar title text appearance -->
-    <style name="TextAppearance.BatikNusantara.ActionBar.Title" parent="TextAppearance.MaterialComponents.Headline6">
-        <item name="android:textColor">?attr/colorOnPrimary</item>
-        <item name="android:textStyle">bold</item>
-        <item name="fontFamily">sans-serif-medium</item>
-    </style>
+    <!-- Base application theme. -->
+    <style name="Theme.BatikNusantara" parent="Base.Theme.BatikNusantara"/>
 </resources>

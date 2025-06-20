@@ -1,10 +1,11 @@
 package com.example.batiknusantara.api;
 
-import com.example.batiknusantara.model.AuthRequest;
-import com.example.batiknusantara.model.AuthResponse;
-import com.example.batiknusantara.model.RegisterRequest;
-import com.example.batiknusantara.model.RegisterResponse;
-import com.example.batiknusantara.model.UserProfileResponse;
+import com.example.batiknusantara.api.request.AuthRequest;
+import com.example.batiknusantara.api.request.RegisterRequest;
+import com.example.batiknusantara.api.response.CategoryResponse;
+import com.example.batiknusantara.api.response.ProductResponse;
+import com.example.batiknusantara.api.response.RegisterResponse;
+import com.example.batiknusantara.api.response.UserResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -15,11 +16,20 @@ import retrofit2.http.Query;
 
 public interface ApiService {
     @POST("auth.php")
-    Call<AuthResponse> login(@Query("action") String action, @Body AuthRequest request);
+    Call<UserResponse> login(@Query("action") String action, @Body AuthRequest request);
     
     @POST("auth.php")
     Call<RegisterResponse> register(@Query("action") String action, @Body RegisterRequest request);
     
     @GET("user/{id}")
-    Call<UserProfileResponse> getUserProfile(@Path("id") int userId);
+    Call<UserResponse> getUserProfile(@Path("id") int userId);
+
+    @GET("products.php")
+    Call<ProductResponse> getAllProducts();
+
+    @GET("products.php")
+    Call<ProductResponse> searchProducts(@Query("search") String keyword);
+
+    @GET("products.php?action=categories")
+    Call<CategoryResponse> getCategories();
 }

@@ -19,9 +19,10 @@ import com.example.batiknusantara.MainActivity;
 import com.example.batiknusantara.R;
 import com.example.batiknusantara.api.ApiClient;
 import com.example.batiknusantara.api.ApiService;
-import com.example.batiknusantara.model.AuthRequest;
-import com.example.batiknusantara.model.AuthResponse;
-import com.example.batiknusantara.model.UserProfileResponse;
+import com.example.batiknusantara.api.request.AuthRequest;
+import com.example.batiknusantara.api.response.UserResponse;
+import com.example.batiknusantara.model.User;
+import com.example.batiknusantara.utils.SessionManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,17 +37,19 @@ public class LoginActivity extends AppCompatActivity {
     private TextView textViewRegister;
     private TextView textViewForgotPassword;
 
+    private SessionManager sessionManager;
+
     private ApiService apiService;
-    private static final String TAG = "LoginActivity";
-    private static final String SHARED_PREF_NAME = "batik_app_preferences";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        sessionManager = new SessionManager(LoginActivity.this);
+
         // Check if user is already logged in
-        if (isLoggedIn()) {
+        if(sessionManager.isLoggedIn()){
             navigateToMainActivity();
             return;
         }
@@ -75,11 +78,6 @@ public class LoginActivity extends AppCompatActivity {
             // Handle forgot password functionality
             Toast.makeText(LoginActivity.this, "Fitur reset password akan segera tersedia", Toast.LENGTH_SHORT).show();
         });
-    }
-
-    private boolean isLoggedIn() {
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
-        return sharedPreferences.getBoolean("is_logged_in", false);
     }
 
     private void attemptLogin() {
@@ -114,78 +112,44 @@ public class LoginActivity extends AppCompatActivity {
 
         // Create login request and call API
         AuthRequest request = new AuthRequest(email, password);
-        Call<AuthResponse> call = apiService.login("login", request);
+        Call<UserResponse> call = apiService.login("login", request);
 
-        call.enqueue(new Callback<AuthResponse>() {
+        call.enqueue(new Callback<UserResponse>() {
             @Override
-            public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 showProgress(false);
                 
                 if (response.isSuccessful() && response.body() != null) {
-                    AuthResponse authResponse = response.body();
-                    
-                    if (authResponse.isStatus()) {
-                        // Login successful
-                        Toast.makeText(LoginActivity.this, authResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    UserResponse userResponse = response.body();
+
+                    if (userResponse.isStatus() == true && userResponse.getUser() != null) {
+                        User user = userResponse.getUser();
                         
-                        // Save user data to SharedPreferences - using the AuthResponse directly
-                        saveUserData(authResponse);
-                        
-                        // Navigate to main activity
+                        SessionManager.saveUser(user);
                         navigateToMainActivity();
+
                     } else {
-                        // Login failed with server message
-                        Toast.makeText(LoginActivity.this, authResponse.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this, "Invalid user data received", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     // Response error
                     Toast.makeText(LoginActivity.this, "Gagal login. Periksa koneksi internet dan coba lagi.", Toast.LENGTH_LONG).show();
-                    Log.e(TAG, "Response error: " + response.message());
+                    Log.e("Login Activity", "Response error: " + response.message());
                 }
             }
 
             @Override
-            public void onFailure(Call<AuthResponse> call, Throwable t) {
+            public void onFailure(Call<UserResponse> call, Throwable t) {
                 showProgress(false);
                 Toast.makeText(LoginActivity.this, "Gagal login: " + t.getMessage(), Toast.LENGTH_LONG).show();
-                Log.e(TAG, "API call failed", t);
+                Log.e("Login Activity", "API call failed", t);
             }
         });
     }
 
+
     private boolean isValidEmail(CharSequence target) {
         return Patterns.EMAIL_ADDRESS.matcher(target).matches();
-    }
-
-    // Updated to use AuthResponse instead of UserProfileResponse
-    private void saveUserData(AuthResponse authResponse) {
-        UserProfileResponse.UserData userData = authResponse.getData();
-        if (userData != null) {
-            SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            
-            editor.putBoolean("is_logged_in", true);
-            editor.putInt("user_id", userData.getId());
-            editor.putString("user_name", userData.getNama());
-            editor.putString("user_email", userData.getEmail());
-            
-            // Save photo filename if available
-            if (userData.getFoto() != null && !userData.getFoto().isEmpty()) {
-                editor.putString("user_foto", userData.getFoto());
-                Log.d(TAG, "Saving user photo: " + userData.getFoto());
-            }
-            
-            // Save additional user data if needed
-            if (userData.getAlamat() != null) editor.putString("user_alamat", userData.getAlamat());
-            if (userData.getKota() != null) editor.putString("user_kota", userData.getKota());
-            if (userData.getProvinsi() != null) editor.putString("user_provinsi", userData.getProvinsi());
-            if (userData.getKodepos() != null) editor.putString("user_kodepos", userData.getKodepos());
-            if (userData.getTelp() != null) editor.putString("user_telp", userData.getTelp());
-            
-            editor.apply();
-        } else {
-            Log.e(TAG, "User data is null in auth response");
-        }
     }
 
     private void navigateToMainActivity() {

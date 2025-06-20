@@ -1,4 +1,4 @@
-package com.example.batiknusantara.model;
+package com.example.batiknusantara.api.response;
 
 import com.google.gson.annotations.SerializedName;
 

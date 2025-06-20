@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF8F0"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".ui.home.HomeFragment"
+    android:background="@color/white"
+    android:isScrollContainer="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <!-- Image Slider -->
         <com.denzcoskun.imageslider.ImageSlider
@@ -34,7 +35,7 @@
             android:layout_marginEnd="16dp"
             app:cardCornerRadius="12dp"
             app:cardElevation="4dp"
-            app:cardBackgroundColor="#FFFFFF"
+            app:cardBackgroundColor="@color/background"
             app:layout_constraintTop_toBottomOf="@id/image_slider"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
@@ -50,9 +51,9 @@
                     android:id="@+id/icon_welcome"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:src="@drawable/handshake"
+                    android:src="@drawable/ic_hand"
                     android:contentDescription="Welcome Icon"
-                    app:tint="#8D4925" />
+                    app:tint="@color/primary" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -66,48 +67,23 @@
                         android:layout_height="wrap_content"
                         android:text="Selamat Datang:"
                         android:textSize="16sp"
-                        android:textColor="#8D4925"
+                        android:textColor="@color/primary"
                         android:fontFamily="sans-serif-medium" />
 
                     <TextView
-                        android:id="@+id/tv_username"
+                        android:id="@+id/tv_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="User"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:textColor="#5D3A1A"
+                        android:textColor="@color/primary"
                         android:fontFamily="sans-serif-medium" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <!-- Categories Section -->
-        <TextView
-            android:id="@+id/tv_categories_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:text="Kategori Batik"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#5D3A1A"
-            android:fontFamily="sans-serif-medium"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/card_welcome" />
-
-        <TextView
-            android:id="@+id/tv_see_all_categories"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:text="Lihat Semua"
-            android:textColor="#00695C"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_categories_title"
-            app:layout_constraintBottom_toBottomOf="@id/tv_categories_title" />
 
         <!-- Categories Horizontal Scroll -->
         <androidx.recyclerview.widget.RecyclerView
@@ -117,21 +93,12 @@
             android:layout_marginTop="12dp"
             android:clipToPadding="false"
             android:orientation="horizontal"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/tv_categories_title" />
+            app:layout_constraintTop_toBottomOf="@id/card_welcome" />
 
         <!-- Simple Line Divider -->
-        <View
-            android:id="@+id/batik_divider1"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:background="@color/black"
-            app:layout_constraintTop_toBottomOf="@id/rv_categories" />
 
         <!-- Top Products Section -->
         <TextView
@@ -143,10 +110,10 @@
             android:text="Produk Terlaris"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="#5D3A1A"
+            android:textColor="@color/primary"
             android:fontFamily="sans-serif-medium"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/batik_divider1" />
+            app:layout_constraintTop_toBottomOf="@id/rv_categories" />
 
         <TextView
             android:id="@+id/tv_see_all_products"
@@ -154,25 +121,36 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:text="Lihat Semua"
-            android:textColor="#00695C"
+            android:textColor="@color/text_link"
             android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_top_products_title"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_top_products_title"
-            app:layout_constraintBottom_toBottomOf="@id/tv_top_products_title" />
+            app:layout_constraintTop_toTopOf="@id/tv_top_products_title" />
 
         <!-- Products Grid -->
+        <View
+            android:id="@+id/batik_divider1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/tv_top_products_title"
+            tools:layout_editor_absoluteX="16dp" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_top_products"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="24dp"
             android:clipToPadding="false"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
-            app:layout_constraintTop_toBottomOf="@id/tv_top_products_title"
+            app:layout_constraintTop_toBottomOf="@id/batik_divider1"
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
